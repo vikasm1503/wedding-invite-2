@@ -70,23 +70,14 @@
       pointer-events: none;
     }
 
-    /* Top Headline (Name & Save The Date) */
+    /* Top Headline Only */
     .top-headline-container {
       position: absolute;
-      top: 2%;
+      top: 2.5%;
       left: 0;
       right: 0;
       text-align: center;
       z-index: 20;
-    }
-
-    .top-name-title {
-      font-family: 'Bungee', cursive;
-      font-size: 0.65rem;
-      color: #38bdf8;
-      text-shadow: 1px 1px 0px #000;
-      letter-spacing: 1px;
-      margin-bottom: 2px;
     }
 
     .top-headline {
@@ -165,7 +156,7 @@
       margin-top: 4px;
     }
 
-    /* Left-Side Top Polaroid (Haldi) - Shifted Down */
+    /* Left-Side Top Polaroid (Haldi) */
     .comic-polaroid-left-top {
       position: absolute;
       top: 26%;
@@ -196,7 +187,7 @@
       margin-top: 4px;
     }
 
-    /* Left-Side Bottom Polaroid (Sangeet) - Shifted Down */
+    /* Left-Side Bottom Polaroid (Sangeet) */
     .comic-polaroid-left-bottom {
       position: absolute;
       top: 44%;
@@ -279,7 +270,7 @@
       border: 2px solid #ffde00;
     }
 
-    /* Bottom Compact Banner with Dates Included */
+    /* Bottom Compact Banner with "Save The Date" Added Above Names */
     .bottom-banner {
       position: absolute;
       bottom: 3%;
@@ -294,20 +285,29 @@
       z-index: 20;
     }
 
-    .banner-names {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #111827;
-      margin-bottom: 1px;
-    }
-
-    .banner-subtitle {
+    .banner-save-date {
       font-family: 'Bungee', cursive;
       font-size: 0.58rem;
       color: #dc2626;
       letter-spacing: 0.5px;
       text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .banner-names {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 2px;
+    }
+
+    .banner-subtitle {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.62rem;
+      color: #4b5563;
+      letter-spacing: 0.5px;
     }
   </style>
 </head>
@@ -325,9 +325,8 @@
   <div class="app-frame" id="appFrame">
     <div class="comic-overlay"></div>
 
-    <!-- Top Headline (Name & Save The Date) -->
+    <!-- Top Headline Only -->
     <div class="top-headline-container">
-      <div class="top-name-title">MANSI &amp; VIKAS</div>
       <div class="top-headline">THE TIME IS ALMOST HERE!</div>
     </div>
 
@@ -386,8 +385,9 @@
       <div class="close-hint">✕ TAP ANYWHERE TO CLOSE</div>
     </div>
 
-    <!-- Bottom Compact Banner with Dates Included -->
+    <!-- Bottom Compact Banner with "Save The Date" Added Above Names -->
     <div class="bottom-banner">
+      <div class="banner-save-date">Save The Date</div>
       <div class="banner-names">Mansi &amp; Vikas</div>
       <div class="banner-subtitle">JAN 30 &amp; 31, 2027 • NAGDA, M.P.</div>
     </div>
