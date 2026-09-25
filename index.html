@@ -28,7 +28,7 @@
       overflow: hidden;
     }
 
-    /* Full-Screen Comic Background Image */
+    /* Full-Screen Edge-to-Edge Comic Background */
     .figma-canvas {
       position: fixed;
       inset: 0;
@@ -39,12 +39,12 @@
     .comic-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.4) 100%);
+      background: rgba(0, 0, 0, 0.15);
       z-index: 1;
       pointer-events: none;
     }
 
-    /* Layout Wrapper matching Figma frame */
+    /* Artboard Frame */
     .figma-artboard {
       position: relative;
       z-index: 10;
@@ -56,147 +56,88 @@
       overflow: hidden;
     }
 
-    /* 1. Top Headline */
+    /* 1. Top Mini Headline */
     .top-headline {
       position: absolute;
-      top: 3%;
+      top: 2%;
       left: 0;
       right: 0;
       text-align: center;
       font-family: 'Bungee', cursive;
-      font-size: clamp(1.4rem, 6vw, 1.9rem);
+      font-size: clamp(0.85rem, 3.5vw, 1.1rem);
       color: #ffde00;
-      text-shadow: 3px 3px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000;
-      letter-spacing: -0.5px;
-      padding: 0 16px;
+      text-shadow: 2px 2px 0px #000, -1px -1px 0px #000;
+      letter-spacing: 0.5px;
       z-index: 20;
     }
 
-    /* 2. Venue Burst Callout (Top Right) */
-    .venue-burst {
+    /* 2. Venue Map Pill (Tucked neatly top-right) */
+    .venue-pill {
       position: absolute;
-      top: 14%;
-      right: 5%;
+      top: 8%;
+      right: 4%;
       background: #ffde00;
-      border: 3px solid #000;
-      border-radius: 16px;
-      padding: 10px 14px;
-      width: 165px;
-      text-align: center;
-      box-shadow: 4px 4px 0px #000;
-      transform: rotate(4deg);
-      z-index: 20;
-      text-decoration: none;
-      display: block;
-      transition: transform 0.1s;
-    }
-    .venue-burst:active { transform: rotate(4deg) translate(2px, 2px); }
-
-    .venue-burst-text {
-      font-family: 'Bungee', cursive;
-      font-size: 0.6rem;
-      color: #000;
-      line-height: 1.2;
-      text-transform: uppercase;
-    }
-
-    /* 3. Date Speech Bubble (Moved to Left-Center) */
-    .date-bubble {
-      position: absolute;
-      top: 42%;
-      left: 6%;
-      background: #38bdf8;
-      border: 3px solid #000;
-      border-radius: 50%;
-      width: 135px;
-      height: 135px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      box-shadow: 4px 4px 0px #000;
-      z-index: 20;
-      padding: 10px;
-    }
-
-    .date-bubble-title {
-      font-family: 'Bungee', cursive;
-      font-size: 0.6rem;
-      color: #000;
-      line-height: 1.1;
-    }
-
-    .date-bubble-sub {
-      font-family: 'Bungee', cursive;
-      font-size: 0.48rem;
-      color: #dc2626;
-      background: #fff;
       border: 2px solid #000;
-      padding: 3px 6px;
-      border-radius: 8px;
-      margin-top: 6px;
-      text-decoration: none;
-      box-shadow: 1px 1px 0px #000;
-    }
-
-    /* 4. Single Unified Action Button */
-    .action-row {
-      position: absolute;
-      bottom: 24%;
-      left: 10%;
-      right: 10%;
-      display: flex;
-      justify-content: center;
-      z-index: 20;
-    }
-
-    .comic-action-btn {
-      background: #facc15;
-      border: 3px solid #000;
-      padding: 12px 20px;
-      border-radius: 14px;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      box-shadow: 4px 4px 0px #000;
+      border-radius: 12px;
+      padding: 6px 10px;
       font-family: 'Bungee', cursive;
-      font-size: 0.75rem;
+      font-size: 0.52rem;
       color: #000;
-      transition: transform 0.1s;
+      text-decoration: none;
+      box-shadow: 3px 3px 0px #000;
+      z-index: 20;
+      transform: rotate(2deg);
     }
-    .comic-action-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px #000; }
+    .venue-pill:active { transform: rotate(2deg) translate(1px, 1px); box-shadow: 1px 1px 0px #000; }
 
-    /* 5. Center Bottom Banner */
+    /* 3. Date & Calendar Pill (Tucked neatly top-left) */
+    .date-pill {
+      position: absolute;
+      top: 8%;
+      left: 4%;
+      background: #38bdf8;
+      border: 2px solid #000;
+      border-radius: 12px;
+      padding: 6px 10px;
+      font-family: 'Bungee', cursive;
+      font-size: 0.52rem;
+      color: #000;
+      text-decoration: none;
+      box-shadow: 3px 3px 0px #000;
+      z-index: 20;
+      transform: rotate(-2deg);
+      text-align: center;
+    }
+    .date-pill:active { transform: rotate(-2deg) translate(1px, 1px); box-shadow: 1px 1px 0px #000; }
+
+    /* 4. Bottom Compact Banner (Leaves couple fully visible) */
     .bottom-banner {
       position: absolute;
-      bottom: 6%;
-      left: 5%;
-      right: 5%;
+      bottom: 3%;
+      left: 4%;
+      right: 4%;
       background: #fffbeb;
-      border: 4px solid #000;
-      border-radius: 16px;
-      padding: 14px 10px;
+      border: 3px solid #000;
+      border-radius: 14px;
+      padding: 10px;
       text-align: center;
-      box-shadow: 5px 5px 0px #000;
+      box-shadow: 4px 4px 0px #000;
       z-index: 20;
     }
 
     .banner-names {
       font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
+      font-size: 1.15rem;
       font-weight: 700;
       color: #111827;
-      margin-bottom: 2px;
+      margin-bottom: 1px;
     }
 
     .banner-subtitle {
       font-family: 'Bungee', cursive;
-      font-size: 0.75rem;
+      font-size: 0.6rem;
       color: #dc2626;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
     }
   </style>
@@ -212,51 +153,36 @@
     <source src="song.mp3" type="audio/mp3">
   </audio>
 
-  <!-- Figma Artboard Frame -->
+  <!-- Artboard Frame -->
   <div class="figma-artboard">
 
     <!-- Top Headline -->
     <div class="top-headline">THE TIME IS ALMOST HERE!</div>
 
-    <!-- Venue Burst Callout -->
+    <!-- Top-Left: Calendar Sync Pill -->
+    <a 
+      href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Mansi+Karandikar+%26+Vikas+Mishra&dates=20270130/20270201&details=Save+the+Date+for+Mansi+and+Vikas+at+Geetashree+Garden!&location=Geetashree+Garden,+Nagda,+Madhya+Pradesh" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="date-pill"
+    >
+      📅 JAN 30-31, '27<br><span style="color:#dc2626; font-size:0.45rem;">+ ADD TO CALENDAR</span>
+    </a>
+
+    <!-- Top-Right: Venue Map Pill -->
     <a 
       href="https://maps.google.com/?q=Geetashree+Garden+Nagda+Madhya+Pradesh" 
       target="_blank" 
       rel="noopener noreferrer" 
-      class="venue-burst"
+      class="venue-pill"
     >
-      <div class="venue-burst-text">📍 GEETASHREE GARDEN, NAGDA, M.P.</div>
+      📍 GEETASHREE GARDEN<br><span style="color:#0369a1; font-size:0.45rem;">OPEN MAPS →</span>
     </a>
 
-    <!-- Date Speech Bubble (Left Center) -->
-    <div class="date-bubble">
-      <div class="date-bubble-title">JAN 30 &amp; 31<br>2027</div>
-      <a 
-        href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Mansi+Karandikar+%26+Vikas+Mishra&dates=20270130/20270201&details=Save+the+Date+for+Mansi+and+Vikas+at+Geetashree+Garden!&location=Geetashree+Garden,+Nagda,+Madhya+Pradesh" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="date-bubble-sub"
-      >
-        + CAL
-      </a>
-    </div>
-
-    <!-- Single Unified Action Button -->
-    <div class="action-row">
-      <a 
-        href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Mansi+Karandikar+%26+Vikas+Mishra&dates=20270130/20270201&details=Save+the+Date+for+Mansi+and+Vikas+at+Geetashree+Garden!&location=Geetashree+Garden,+Nagda,+Madhya+Pradesh" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="comic-action-btn"
-      >
-        <span>📅</span> ADD TO CALENDAR &amp; RSVP
-      </a>
-    </div>
-
-    <!-- Bottom Banner -->
+    <!-- Bottom Compact Banner -->
     <div class="bottom-banner">
       <div class="banner-names">Mansi &amp; Vikas</div>
-      <div class="banner-subtitle">Save The Date</div>
+      <div class="banner-subtitle">Save The Date • Nagda, M.P.</div>
     </div>
 
   </div>
