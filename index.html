@@ -71,6 +71,26 @@
       z-index: 20;
     }
 
+    /* Top-Center Audio Toggle Pill */
+    .audio-toggle-pill {
+      position: absolute;
+      top: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ffffff;
+      border: 2px solid #000;
+      border-radius: 16px;
+      padding: 5px 12px;
+      font-family: 'Bungee', cursive;
+      font-size: 0.5rem;
+      color: #000;
+      cursor: pointer;
+      box-shadow: 3px 3px 0px #000;
+      z-index: 30;
+      transition: transform 0.1s;
+    }
+    .audio-toggle-pill:active { transform: translateX(-50%) translate(1px, 1px); box-shadow: 1px 1px 0px #000; }
+
     /* 2. Venue Map Pill (Tucked neatly top-right) */
     .venue-pill {
       position: absolute;
@@ -110,7 +130,7 @@
     }
     .date-pill:active { transform: rotate(-2deg) translate(1px, 1px); box-shadow: 1px 1px 0px #000; }
 
-    /* 4. Bottom Compact Banner (Leaves couple fully visible) */
+    /* 4. Bottom Compact Banner */
     .bottom-banner {
       position: absolute;
       bottom: 3%;
@@ -159,6 +179,11 @@
     <!-- Top Headline -->
     <div class="top-headline">THE TIME IS ALMOST HERE!</div>
 
+    <!-- Top-Center Sound Toggle Pill (On/Off Tap Control) -->
+    <div class="audio-toggle-pill" id="audioToggleBtn">
+      🔊 SOUND: <span id="soundStatus">ON</span>
+    </div>
+
     <!-- Top-Left: Calendar Sync Pill -->
     <a 
       href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Mansi+Karandikar+%26+Vikas+Mishra&dates=20270130/20270201&details=Save+the+Date+for+Mansi+and+Vikas+at+Geetashree+Garden!&location=Geetashree+Garden,+Nagda,+Madhya+Pradesh" 
@@ -188,14 +213,37 @@
   </div>
 
   <script>
-    // Automatic Audio Playback
+    const bgMusic = document.getElementById('bgMusic');
+    const audioToggleBtn = document.getElementById('audioToggleBtn');
+    const soundStatus = document.getElementById('soundStatus');
+    let isPlaying = false;
+
+    // Automatic Audio Playback Attempt on Load
     window.addEventListener('DOMContentLoaded', () => {
-      const bgMusic = document.getElementById('bgMusic');
-      bgMusic.play().catch(() => {
-        document.body.addEventListener('click', () => {
-          bgMusic.play();
-        }, { once: true });
+      bgMusic.play().then(() => {
+        isPlaying = true;
+        soundStatus.textContent = 'ON';
+      }).catch(() => {
+        isPlaying = false;
+        soundStatus.textContent = 'OFF';
       });
+    });
+
+    // On-tap Sound Toggle Control (On / Off)
+    audioToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isPlaying) {
+        bgMusic.pause();
+        soundStatus.textContent = 'OFF';
+        audioToggleBtn.style.background = '#fca5a5';
+        isPlaying = false;
+      } else {
+        bgMusic.play().then(() => {
+          soundStatus.textContent = 'ON';
+          audioToggleBtn.style.background = '#86efac';
+          isPlaying = true;
+        }).catch(() => {});
+      }
     });
   </script>
 </body>
