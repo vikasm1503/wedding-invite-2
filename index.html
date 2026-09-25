@@ -122,7 +122,7 @@
     .sound-badge { background: #f472b6; transform: rotate(1.5deg); }
     .venue-badge { background: #ffde00; transform: rotate(-2deg); }
 
-    /* Right-Side Polaroid */
+    /* Right-Side Polaroid (Phere) */
     .comic-polaroid-right {
       position: absolute;
       top: 22%;
@@ -147,16 +147,16 @@
     .comic-polaroid-right span {
       display: block;
       font-family: 'Bungee', cursive;
-      font-size: 0.35rem;
+      font-size: 0.33rem;
       color: #000;
       text-align: center;
       margin-top: 4px;
     }
 
-    /* Left-Side Polaroids (Below Tree) */
-    .comic-polaroid-left {
+    /* Left-Side Top Polaroid (Halفi) */
+    .comic-polaroid-left-top {
       position: absolute;
-      top: 32%;
+      top: 22%;
       left: 4%;
       background: #fff;
       border: 2px solid #000;
@@ -168,17 +168,48 @@
       cursor: pointer;
       transition: transform 0.2s;
     }
-    .comic-polaroid-left:hover { transform: rotate(-5deg) scale(1.05); }
-    .comic-polaroid-left img {
+    .comic-polaroid-left-top:hover { transform: rotate(-5deg) scale(1.05); }
+    .comic-polaroid-left-top img {
       width: 100%;
       height: 55px;
       object-fit: cover;
       border: 1px solid #000;
     }
-    .comic-polaroid-left span {
+    .comic-polaroid-left-top span {
       display: block;
       font-family: 'Bungee', cursive;
-      font-size: 0.35rem;
+      font-size: 0.33rem;
+      color: #000;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    /* Left-Side Bottom Polaroid (Sangeet - Placed a bit down) */
+    .comic-polaroid-left-bottom {
+      position: absolute;
+      top: 40%;
+      left: 5%;
+      background: #fff;
+      border: 2px solid #000;
+      padding: 6px 6px 18px 6px;
+      width: 65px;
+      box-shadow: 4px 4px 0px #000;
+      transform: rotate(4deg);
+      z-index: 15;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .comic-polaroid-left-bottom:hover { transform: rotate(2deg) scale(1.05); }
+    .comic-polaroid-left-bottom img {
+      width: 100%;
+      height: 55px;
+      object-fit: cover;
+      border: 1px solid #000;
+    }
+    .comic-polaroid-left-bottom span {
+      display: block;
+      font-family: 'Bungee', cursive;
+      font-size: 0.33rem;
       color: #000;
       text-align: center;
       margin-top: 4px;
@@ -236,7 +267,7 @@
       border: 2px solid #ffde00;
     }
 
-    /* Bottom Compact Banner with Dates */
+    /* Bottom Compact Banner with Dates Included */
     .bottom-banner {
       position: absolute;
       bottom: 3%;
@@ -285,16 +316,22 @@
     <!-- Top Headline -->
     <div class="top-headline">THE TIME IS ALMOST HERE!</div>
 
-    <!-- Left-Side Polaroid (Below Tree) -->
-    <div class="comic-polaroid-left" onclick="openLightbox('polaroid1.jpg', 'MEMORIES')">
-      <img src="polaroid1.jpg" alt="Memory 1" onerror="this.src='couple.jpg'">
+    <!-- Left-Side Top Polaroid: Haldi 30 Jan -->
+    <div class="comic-polaroid-left-top" onclick="openLightbox('polaroid1.jpg', 'HALDI • 30 JAN')">
+      <img src="polaroid1.jpg" alt="Haldi" onerror="this.src='couple.jpg'">
       <span>TAP TO VIEW</span>
     </div>
 
-    <!-- Right-Side Polaroid -->
-    <div class="comic-polaroid-right" onclick="openLightbox('polaroid2.jpg', 'FOREVER')">
-      <img src="polaroid2.jpg" alt="Memory 2" onerror="this.src='couple.jpg'">
-      <span>FOREVER</span>
+    <!-- Left-Side Bottom Polaroid: Sangeet 30th Jan -->
+    <div class="comic-polaroid-left-bottom" onclick="openLightbox('polaroid2.jpg', 'SANGEET • 30TH JAN')">
+      <img src="polaroid2.jpg" alt="Sangeet" onerror="this.src='couple.jpg'">
+      <span>TAP TO VIEW</span>
+    </div>
+
+    <!-- Right-Side Polaroid: Phere 31st Jan -->
+    <div class="comic-polaroid-right" onclick="openLightbox('polaroid3.jpg', 'PHERE • 31ST JAN')">
+      <img src="polaroid3.jpg" alt="Phere" onerror="this.src='couple.jpg'">
+      <span>TAP TO VIEW</span>
     </div>
 
     <!-- Top Elongated & Tilted Control Bar -->
@@ -329,7 +366,7 @@
     <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
       <div class="lightbox-card" onclick="event.stopPropagation()">
         <img id="lightboxImg" src="" alt="Giblified Photo">
-        <p id="lightboxCaption">MAMORIES</p>
+        <p id="lightboxCaption">EVENT</p>
       </div>
       <div class="close-hint">✕ TAP ANYWHERE TO CLOSE</div>
     </div>
@@ -369,7 +406,7 @@
 
     // Tap anywhere inside app frame to toggle sound (unless clicking links or polaroids)
     document.addEventListener('click', (e) => {
-      if (e.target.closest('a') || e.target.closest('.comic-polaroid-left') || e.target.closest('.comic-polaroid-right') || lightboxModal.classList.contains('active')) return;
+      if (e.target.closest('a') || e.target.closest('[class*="comic-polaroid"]') || lightboxModal.classList.contains('active')) return;
       toggleAudio();
     });
 
