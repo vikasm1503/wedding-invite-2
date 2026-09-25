@@ -70,25 +70,37 @@
       pointer-events: none;
     }
 
-    /* Top Headline */
-    .top-headline {
+    /* Top Headline (Name & Save The Date) */
+    .top-headline-container {
       position: absolute;
       top: 2%;
       left: 0;
       right: 0;
       text-align: center;
+      z-index: 20;
+    }
+
+    .top-name-title {
+      font-family: 'Bungee', cursive;
+      font-size: 0.65rem;
+      color: #38bdf8;
+      text-shadow: 1px 1px 0px #000;
+      letter-spacing: 1px;
+      margin-bottom: 2px;
+    }
+
+    .top-headline {
       font-family: 'Bungee', cursive;
       font-size: clamp(0.85rem, 3.5vw, 1.05rem);
       color: #ffde00;
       text-shadow: 2px 2px 0px #000, -1px -1px 0px #000;
       letter-spacing: 0.5px;
-      z-index: 20;
     }
 
     /* Elongated & Tilted Comic Top Control Bar */
     .top-control-bar {
       position: absolute;
-      top: 8.5%;
+      top: 9.5%;
       left: 3%;
       right: 3%;
       display: flex;
@@ -153,10 +165,10 @@
       margin-top: 4px;
     }
 
-    /* Left-Side Top Polaroid (Halفi) */
+    /* Left-Side Top Polaroid (Haldi) - Shifted Down */
     .comic-polaroid-left-top {
       position: absolute;
-      top: 22%;
+      top: 26%;
       left: 4%;
       background: #fff;
       border: 2px solid #000;
@@ -184,10 +196,10 @@
       margin-top: 4px;
     }
 
-    /* Left-Side Bottom Polaroid (Sangeet - Placed a bit down) */
+    /* Left-Side Bottom Polaroid (Sangeet) - Shifted Down */
     .comic-polaroid-left-bottom {
       position: absolute;
-      top: 40%;
+      top: 44%;
       left: 5%;
       background: #fff;
       border: 2px solid #000;
@@ -313,8 +325,11 @@
   <div class="app-frame" id="appFrame">
     <div class="comic-overlay"></div>
 
-    <!-- Top Headline -->
-    <div class="top-headline">THE TIME IS ALMOST HERE!</div>
+    <!-- Top Headline (Name & Save The Date) -->
+    <div class="top-headline-container">
+      <div class="top-name-title">MANSI &amp; VIKAS</div>
+      <div class="top-headline">THE TIME IS ALMOST HERE!</div>
+    </div>
 
     <!-- Left-Side Top Polaroid: Haldi 30 Jan -->
     <div class="comic-polaroid-left-top" onclick="openLightbox('polaroid1.jpg', 'HALDI • 30 JAN')">
