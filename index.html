@@ -39,7 +39,7 @@
     .comic-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.15);
+      background: rgba(0, 0, 0, 0.1);
       z-index: 1;
       pointer-events: none;
     }
@@ -56,7 +56,7 @@
       overflow: hidden;
     }
 
-    /* 1. Top Mini Headline */
+    /* Top Headline */
     .top-headline {
       position: absolute;
       top: 2%;
@@ -71,66 +71,75 @@
       z-index: 20;
     }
 
-    /* Top-Center Audio Toggle Pill */
-    .audio-toggle-pill {
+    /* Top Control Bar (Pushed down slightly) */
+    .top-control-bar {
       position: absolute;
-      top: 8%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #ffffff;
+      top: 8.5%;
+      left: 3%;
+      right: 3%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 25;
+      gap: 6px;
+    }
+
+    .comic-badge {
       border: 2px solid #000;
-      border-radius: 16px;
-      padding: 5px 12px;
+      border-radius: 12px;
+      padding: 6px 10px;
       font-family: 'Bungee', cursive;
       font-size: 0.5rem;
       color: #000;
-      cursor: pointer;
+      text-decoration: none;
       box-shadow: 3px 3px 0px #000;
-      z-index: 30;
+      text-align: center;
+      cursor: pointer;
+      display: inline-block;
       transition: transform 0.1s;
     }
-    .audio-toggle-pill:active { transform: translateX(-50%) translate(1px, 1px); box-shadow: 1px 1px 0px #000; }
+    .comic-badge:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0px #000; }
 
-    /* 2. Venue Map Pill (Tucked neatly top-right) */
-    .venue-pill {
+    .date-badge { background: #38bdf8; transform: rotate(-1.5deg); }
+    .sound-badge { background: #f472b6; transform: rotate(0deg); }
+    .venue-badge { background: #ffde00; transform: rotate(1.5deg); }
+
+    /* Animated Comic Stickers in the Empty Sky Space */
+    .comic-sticker {
       position: absolute;
-      top: 8%;
-      right: 4%;
-      background: #ffde00;
-      border: 2px solid #000;
-      border-radius: 12px;
-      padding: 6px 10px;
       font-family: 'Bungee', cursive;
-      font-size: 0.52rem;
-      color: #000;
-      text-decoration: none;
-      box-shadow: 3px 3px 0px #000;
-      z-index: 20;
-      transform: rotate(2deg);
+      z-index: 5;
+      pointer-events: none;
+      animation: floatSticker 4s ease-in-out infinite alternate;
     }
-    .venue-pill:active { transform: rotate(2deg) translate(1px, 1px); box-shadow: 1px 1px 0px #000; }
 
-    /* 3. Date & Calendar Pill (Tucked neatly top-left) */
-    .date-pill {
-      position: absolute;
-      top: 8%;
-      left: 4%;
-      background: #38bdf8;
-      border: 2px solid #000;
-      border-radius: 12px;
-      padding: 6px 10px;
-      font-family: 'Bungee', cursive;
-      font-size: 0.52rem;
-      color: #000;
-      text-decoration: none;
-      box-shadow: 3px 3px 0px #000;
-      z-index: 20;
-      transform: rotate(-2deg);
-      text-align: center;
+    .sticker-1 {
+      top: 18%;
+      left: 10%;
+      font-size: 1.2rem;
+      animation-delay: 0s;
     }
-    .date-pill:active { transform: rotate(-2deg) translate(1px, 1px); box-shadow: 1px 1px 0px #000; }
 
-    /* 4. Bottom Compact Banner */
+    .sticker-2 {
+      top: 16%;
+      right: 12%;
+      font-size: 1.3rem;
+      animation-delay: 1.5s;
+    }
+
+    .sticker-3 {
+      top: 28%;
+      left: 6%;
+      font-size: 1rem;
+      animation-delay: 0.8s;
+    }
+
+    @keyframes floatSticker {
+      0% { transform: translateY(0px) rotate(-5s); }
+      100% { transform: translateY(-8px) rotate(5deg); }
+    }
+
+    /* Bottom Compact Banner */
     .bottom-banner {
       position: absolute;
       bottom: 3%;
@@ -179,30 +188,38 @@
     <!-- Top Headline -->
     <div class="top-headline">THE TIME IS ALMOST HERE!</div>
 
-    <!-- Top-Center Sound Toggle Pill (On/Off Tap Control) -->
-    <div class="audio-toggle-pill" id="audioToggleBtn">
-      🔊 SOUND: <span id="soundStatus">ON</span>
+    <!-- Animated Comic Stickers in Empty Sky Area -->
+    <div class="comic-sticker sticker-1">✨💖</div>
+    <div class="comic-sticker sticker-2">💫</div>
+    <div class="comic-sticker sticker-3">💖✨</div>
+
+    <!-- Pushed-Down Top Control Bar -->
+    <div class="top-control-bar">
+      <!-- Calendar Pill -->
+      <a 
+        href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Mansi+Karandikar+%26+Vikas+Mishra&dates=20270130/20270201&details=Save+the+Date+for+Mansi+and+Vikas+at+Geetashree+Garden!&location=Geetashree+Garden,+Nagda,+Madhya+Pradesh" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="comic-badge date-badge"
+      >
+        📅 JAN 30-31<br><span style="color:#dc2626; font-size:0.4rem;">+ ADD CAL</span>
+      </a>
+
+      <!-- Sound Toggle Status Pill -->
+      <div class="comic-badge sound-badge" id="soundTogglePill">
+        🎵 SOUND<br><span id="soundStatus" style="color:#000; font-size:0.4rem;">OFF</span>
+      </div>
+
+      <!-- Venue Map Pill -->
+      <a 
+        href="https://maps.google.com/?q=Geetashree+Garden+Nagda+Madhya+Pradesh" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="comic-badge venue-badge"
+      >
+        📍 VENUE<br><span style="color:#0369a1; font-size:0.4rem;">MAPS →</span>
+      </a>
     </div>
-
-    <!-- Top-Left: Calendar Sync Pill -->
-    <a 
-      href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Mansi+Karandikar+%26+Vikas+Mishra&dates=20270130/20270201&details=Save+the+Date+for+Mansi+and+Vikas+at+Geetashree+Garden!&location=Geetashree+Garden,+Nagda,+Madhya+Pradesh" 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      class="date-pill"
-    >
-      📅 JAN 30-31, '27<br><span style="color:#dc2626; font-size:0.45rem;">+ ADD TO CALENDAR</span>
-    </a>
-
-    <!-- Top-Right: Venue Map Pill -->
-    <a 
-      href="https://maps.google.com/?q=Geetashree+Garden+Nagda+Madhya+Pradesh" 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      class="venue-pill"
-    >
-      📍 GEETASHREE GARDEN<br><span style="color:#0369a1; font-size:0.45rem;">OPEN MAPS →</span>
-    </a>
 
     <!-- Bottom Compact Banner -->
     <div class="bottom-banner">
@@ -214,36 +231,41 @@
 
   <script>
     const bgMusic = document.getElementById('bgMusic');
-    const audioToggleBtn = document.getElementById('audioToggleBtn');
     const soundStatus = document.getElementById('soundStatus');
+    const soundTogglePill = document.getElementById('soundTogglePill');
     let isPlaying = false;
 
-    // Automatic Audio Playback Attempt on Load
-    window.addEventListener('DOMContentLoaded', () => {
-      bgMusic.play().then(() => {
-        isPlaying = true;
-        soundStatus.textContent = 'ON';
-      }).catch(() => {
-        isPlaying = false;
-        soundStatus.textContent = 'OFF';
-      });
-    });
+    // Tap anywhere on the screen (except direct button links) to toggle music
+    document.addEventListener('click', (e) => {
+      // If user clicked a link/badge inside top bar, let it handle its own href
+      if (e.target.closest('a')) return;
 
-    // On-tap Sound Toggle Control (On / Off)
-    audioToggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
       if (isPlaying) {
         bgMusic.pause();
         soundStatus.textContent = 'OFF';
-        audioToggleBtn.style.background = '#fca5a5';
-        isPlaying = false;
+        soundTogglePill.style.background = '#f472b6';
       } else {
         bgMusic.play().then(() => {
           soundStatus.textContent = 'ON';
-          audioToggleBtn.style.background = '#86efac';
-          isPlaying = true;
+          soundTogglePill.style.background = '#4ade80';
         }).catch(() => {});
       }
+      isPlaying = !isPlaying;
+    });
+
+    // Dedicated tap specifically on the sound status pill to toggle audio easily
+    soundTogglePill.addEventListener('click', () => {
+      if (isPlaying) {
+        bgMusic.pause();
+        soundStatus.textContent = 'OFF';
+        soundTogglePill.style.background = '#f472b6';
+      } else {
+        bgMusic.play().then(() => {
+          soundStatus.textContent = 'ON';
+          soundTogglePill.style.background = '#4ade80';
+        }).catch(() => {});
+      }
+      isPlaying = !isPlaying;
     });
   </script>
 </body>
