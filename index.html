@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>SAVE THE DATE • Mansi & Vikas</title>
 
-  <!-- Google Fonts: Bungee (Comic Font) & Playfair Display -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Playfair+Display:ital,wght@0,700;1,400&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
@@ -36,7 +36,6 @@
       z-index: 0;
     }
 
-    /* Subtle comic overlay styling */
     .comic-overlay {
       position: absolute;
       inset: 0;
@@ -57,7 +56,7 @@
       overflow: hidden;
     }
 
-    /* 1. Top Headline: THE TIME IS ALMOST HERE! */
+    /* 1. Top Headline */
     .top-headline {
       position: absolute;
       top: 3%;
@@ -101,11 +100,11 @@
       text-transform: uppercase;
     }
 
-    /* 3. Date Speech Bubble (Mid Right) */
+    /* 3. Date Speech Bubble (Moved to Left-Center) */
     .date-bubble {
       position: absolute;
-      top: 48%;
-      right: 6%;
+      top: 42%;
+      left: 6%;
       background: #38bdf8;
       border: 3px solid #000;
       border-radius: 50%;
@@ -141,39 +140,36 @@
       box-shadow: 1px 1px 0px #000;
     }
 
-    /* 4. Action Buttons (Venue Map & RSVP) */
+    /* 4. Single Unified Action Button */
     .action-row {
       position: absolute;
       bottom: 24%;
-      left: 5%;
-      right: 5%;
+      left: 10%;
+      right: 10%;
       display: flex;
-      justify-content: space-between;
-      gap: 12px;
+      justify-content: center;
       z-index: 20;
     }
 
     .comic-action-btn {
-      flex: 1;
-      background: #f472b6;
+      background: #facc15;
       border: 3px solid #000;
-      padding: 10px;
-      border-radius: 12px;
+      padding: 12px 20px;
+      border-radius: 14px;
       text-decoration: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
       box-shadow: 4px 4px 0px #000;
       font-family: 'Bungee', cursive;
-      font-size: 0.65rem;
+      font-size: 0.75rem;
       color: #000;
       transition: transform 0.1s;
     }
-    .comic-action-btn.yellow { background: #facc15; }
     .comic-action-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px #000; }
 
-    /* 5. Center Bottom Banner: MANSI & VIKAS SAVE THE DATE */
+    /* 5. Center Bottom Banner */
     .bottom-banner {
       position: absolute;
       bottom: 6%;
@@ -232,7 +228,7 @@
       <div class="venue-burst-text">📍 GEETASHREE GARDEN, NAGDA, M.P.</div>
     </a>
 
-    <!-- Date Speech Bubble -->
+    <!-- Date Speech Bubble (Left Center) -->
     <div class="date-bubble">
       <div class="date-bubble-title">JAN 30 &amp; 31<br>2027</div>
       <a 
@@ -245,23 +241,15 @@
       </a>
     </div>
 
-    <!-- Action Buttons Row -->
+    <!-- Single Unified Action Button -->
     <div class="action-row">
-      <a 
-        href="https://maps.google.com/?q=Geetashree+Garden+Nagda+Madhya+Pradesh" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="comic-action-btn"
-      >
-        <span>🗺️</span> VENUE MAP
-      </a>
       <a 
         href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Mansi+Karandikar+%26+Vikas+Mishra&dates=20270130/20270201&details=Save+the+Date+for+Mansi+and+Vikas+at+Geetashree+Garden!&location=Geetashree+Garden,+Nagda,+Madhya+Pradesh" 
         target="_blank" 
         rel="noopener noreferrer" 
-        class="comic-action-btn yellow"
+        class="comic-action-btn"
       >
-        <span>📅</span> RSVP / CAL
+        <span>📅</span> ADD TO CALENDAR &amp; RSVP
       </a>
     </div>
 
