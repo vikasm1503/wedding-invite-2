@@ -8,7 +8,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -24,238 +24,178 @@
       width: 100%;
       height: 100%;
       background-color: #0d0f17;
-      color: #fff;
       font-family: 'Plus Jakarta Sans', sans-serif;
       overflow: hidden;
     }
 
-    /* Comic Book Halftone & Ben-Day Dots Background Overlay */
-    .comic-backdrop {
+    /* Full-Screen Edge-to-Edge Comic Background Photo */
+    .bg-container {
       position: fixed;
       inset: 0;
       background: url('couple.jpg') center/cover no-repeat;
       z-index: 0;
-      filter: contrast(1.15) saturate(1.2);
     }
 
-    .halftone-overlay {
+    /* Soft vignette so text is readable without hiding the picture */
+    .vignette {
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(rgba(0, 0, 0, 0.35) 1px, transparent 1px);
-      background-size: 4px 4px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 40%, rgba(0,0,0,0.75) 75%, rgba(0,0,0,0.95) 100%);
       z-index: 1;
       pointer-events: none;
     }
 
-    .vignette-overlay {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle, transparent 40%, rgba(10, 12, 20, 0.85) 100%);
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    /* Main Comic Book Panel Container */
-    .comic-container {
-      position: relative;
-      z-index: 10;
-      width: 100vw;
-      height: 100vh;
-      height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 24px;
-    }
-
-    /* Speech Bubble / Action Panel Drop */
-    .comic-panel {
-      width: 100%;
-      max-width: 400px;
-      background: #ffffff;
-      border: 4px solid #000000;
-      border-radius: 24px;
-      padding: 26px 20px 20px 20px;
-      color: #000;
-      box-shadow: 6px 6px 0px #000000, 0 20px 40px rgba(0,0,0,0.6);
-      position: relative;
-      animation: comicDropIn 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-    }
-
-    @keyframes comicDropIn {
-      0% { transform: translateY(100px) scale(0.8); opacity: 0; }
-      100% { transform: translateY(0) scale(1); opacity: 1; }
-    }
-
-    /* Action Starburst Tag */
-    .action-burst {
-      position: absolute;
-      top: -22px;
+    /* Top-Left Location Pin (Near Hotel) */
+    .top-left-location {
+      position: fixed;
+      top: 20px;
       left: 20px;
+      z-index: 50;
+    }
+
+    .hotel-pin-btn {
       background: #ffde00;
       border: 3px solid #000;
-      padding: 4px 14px;
+      color: #000;
       font-family: 'Bungee', cursive;
       font-size: 0.7rem;
-      color: #000;
-      transform: rotate(-3deg);
-      box-shadow: 3px 3px 0px #000;
-      border-radius: 8px;
-    }
-
-    .comic-title {
-      font-family: 'Bungee', cursive;
-      font-size: 1.6rem;
-      line-height: 1.1;
-      color: #000;
-      margin-top: 6px;
-      margin-bottom: 4px;
-      text-transform: uppercase;
-      letter-spacing: -0.5px;
-    }
-
-    .comic-names {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #e11d48;
-      margin-bottom: 10px;
-    }
-
-    .comic-location {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #334155;
-      margin-bottom: 16px;
+      padding: 8px 14px;
+      border-radius: 20px;
+      text-decoration: none;
       display: flex;
       align-items: center;
       gap: 6px;
-    }
-
-    /* Comic Calendar Box */
-    .comic-calendar {
-      background: #fef08a;
-      border: 3px solid #000;
-      border-radius: 16px;
-      padding: 12px;
-      text-align: center;
-      margin-bottom: 16px;
       box-shadow: 3px 3px 0px #000;
+      transition: transform 0.1s;
     }
-
-    .cal-title {
-      font-family: 'Bungee', cursive;
-      font-size: 0.8rem;
-      color: #000;
-      margin-bottom: 6px;
-    }
-
-    .dates-highlight {
-      font-family: 'Bungee', cursive;
-      font-size: 1.1rem;
-      color: #dc2626;
-      background: #fff;
-      border: 2px solid #000;
-      padding: 6px;
-      border-radius: 10px;
-      display: inline-block;
-      width: 100%;
-      box-shadow: 2px 2px 0px #000;
-    }
-
-    /* Comic Action Buttons */
-    .button-row {
-      display: flex;
-      gap: 10px;
-    }
-
-    .comic-btn {
-      flex: 1;
-      background: #38bdf8;
-      border: 3px solid #000;
-      color: #000;
-      font-family: 'Bungee', cursive;
-      font-size: 0.72rem;
-      padding: 12px 8px;
-      border-radius: 14px;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      box-shadow: 4px 4px 0px #000;
-      transition: transform 0.1s, box-shadow 0.1s;
-    }
-    .comic-btn:active {
-      transform: translate(3px, 3px);
+    .hotel-pin-btn:active {
+      transform: translate(2px, 2px);
       box-shadow: 1px 1px 0px #000;
     }
 
-    .comic-btn.pink { background: #f472b6; }
-    .comic-btn.yellow { background: #facc15; }
+    /* Bottom-Center Floating Text Layout (No Cards) */
+    .bottom-content {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .comic-names {
+      font-family: 'Bungee', cursive;
+      font-size: clamp(1.8rem, 7vw, 2.6rem);
+      color: #ffffff;
+      text-shadow: 3px 3px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000;
+      margin-bottom: 6px;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .comic-tagline {
+      font-family: 'Bungee', cursive;
+      font-size: clamp(0.9rem, 3.5vw, 1.2rem);
+      color: #facc15;
+      text-shadow: 2px 2px 0px #000;
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+    }
+
+    /* Calendar & Action Row */
+    .date-action-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid #fff;
+      padding: 10px 18px;
+      border-radius: 30px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .date-text {
+      font-family: 'Bungee', cursive;
+      font-size: 0.85rem;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    .cal-sync-btn {
+      background: #f472b6;
+      border: 2px solid #000;
+      color: #000;
+      font-family: 'Bungee', cursive;
+      font-size: 0.65rem;
+      padding: 6px 12px;
+      border-radius: 16px;
+      text-decoration: none;
+      box-shadow: 2px 2px 0px #000;
+      transition: transform 0.1s;
+    }
+    .cal-sync-btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: none;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Background Comic Art & Halftone Patterns -->
-  <div class="comic-backdrop"></div>
-  <div class="halftone-overlay"></div>
-  <div class="vignette-overlay"></div>
+  <!-- Background Comic Image -->
+  <div class="bg-container"></div>
+  <div class="vignette"></div>
 
-  <!-- Background Music Audio Track (Loads song.mp3 automatically) -->
+  <!-- Background Audio Track -->
   <audio id="bgMusic" loop preload="auto">
     <source src="song.mp3" type="audio/mp3">
   </audio>
 
-  <!-- Main Comic Interface -->
-  <div class="comic-container">
-    <div class="comic-panel">
-      <div class="action-burst">POW! SAVE THE DATE</div>
-      
-      <div class="comic-title">Mansi &amp; Vikas</div>
-      <div class="comic-names">The Forever Edition</div>
-      
-      <div class="comic-location">
-        <span>📍</span> Geetashree Garden, Nagda, MP
-      </div>
+  <!-- Top-Left Hotel / Venue Location Button -->
+  <div class="top-left-location">
+    <a 
+      href="https://maps.google.com/?q=Geetashree+Garden+Nagda+Madhya+Pradesh" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      class="hotel-pin-btn"
+    >
+      <span>📍</span> VENUE MAP
+    </a>
+  </div>
 
-      <!-- Comic Drop Calendar Box -->
-      <div class="comic-calendar">
-        <div class="cal-title">ISSUE RELEASE DATES</div>
-        <div class="dates-highlight">JAN 30 &amp; 31, 2027</div>
-      </div>
+  <!-- Bottom-Center Clean Text & Date Information -->
+  <div class="bottom-content">
+    <div class="comic-names">Mansi &amp; Vikas</div>
+    <div class="comic-tagline">Save The Date</div>
 
-      <!-- Comic Action Buttons -->
-      <div class="button-row">
-        <a 
-          href="https://maps.google.com/?q=Geetashree+Garden+Nagda+Madhya+Pradesh" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          class="comic-btn pink"
-        >
-          <span style="font-size:1rem;">🗺️</span>
-          <span>LOCATION</span>
-        </a>
-        <a 
-          href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Mansi+Karandikar+%26+Vikas+Mishra&dates=20270130/20270201&details=Save+the+Date+for+Mansi+and+Vikas+at+Geetashree+Garden!&location=Geetashree+Garden,+Nagda,+Madhya+Pradesh" 
-          target="_blank"
-          rel="noopener noreferrer"
-          class="comic-btn yellow"
-        >
-          <span style="font-size:1rem;">📅</span>
-          <span>CALENDAR</span>
-        </a>
-      </div>
+    <div class="date-action-box">
+      <div class="date-text">JAN 30 &amp; 31, 2027</div>
+      <a 
+        href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Mansi+Karandikar+%26+Vikas+Mishra&dates=20270130/20270201&details=Save+the+Date+for+Mansi+and+Vikas+at+Geetashree+Garden!&location=Geetashree+Garden,+Nagda,+Madhya+Pradesh" 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cal-sync-btn"
+      >
+        + CALENDAR
+      </a>
     </div>
   </div>
 
   <script>
-    // Automatically attempt to play song.mp3 on load
+    // Automatic Background Music Playback
     window.addEventListener('DOMContentLoaded', () => {
       const bgMusic = document.getElementById('bgMusic');
       bgMusic.play().catch(() => {
-        // Modern browsers block autoplay until a user interaction occurs.
-        // Tapping anywhere on the screen will instantly start the music seamlessly.
         document.body.addEventListener('click', () => {
           bgMusic.play();
         }, { once: true });
