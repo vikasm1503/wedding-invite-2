@@ -5,23 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Save The Date • Mansi & Vikas</title>
 
-  <!-- Open Graph Social Media Previews -->
-  <meta property="og:title" content="Save The Date • Mansi & Vikas" />
-  <meta property="og:description" content="January 30 & 31, 2027 | Nagda, Madhya Pradesh" />
-  <meta property="og:type" content="website" />
-
-  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-base: #08080a;
+      --bg-base: #07090e;
       --gold-primary: #dfb15b;
       --gold-gradient: linear-gradient(135deg, #f7e1b5 0%, #dfb15b 50%, #c59341 100%);
-      --glass-bg: rgba(18, 20, 26, 0.65);
-      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-bg: rgba(15, 18, 25, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.12);
       --text-main: #f3f4f6;
       --text-muted: #9ca3af;
     }
@@ -35,333 +30,444 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    body {
+    body, html {
+      width: 100%;
+      height: 100%;
       background-color: var(--bg-base);
       color: var(--text-main);
       font-family: 'Plus Jakarta Sans', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow-x: hidden;
-    }
-
-    /* Cinematic Ambient Backdrop */
-    .backdrop-container {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
       overflow: hidden;
     }
-    .backdrop-image {
-      position: absolute;
-      inset: -20px;
-      /* If you uploaded couple.jpg, change the URL to 'couple.jpg' */
-      background: url('couple.jpeg') center/cover no-repeat;
-      filter: blur(30px) brightness(0.35);
-      transform: scale(1.1);
-    }
-    .backdrop-overlay {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(8,8,10,0.2) 0%, rgba(8,8,10,0.85) 100%);
+
+    /* Floating Top Controls */
+    .top-controls {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      display: flex;
+      gap: 10px;
     }
 
-    /* Floating Audio Player */
-    .audio-dock {
-      position: fixed;
-      top: 24px;
-      right: 24px;
-      z-index: 50;
+    .control-pill {
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 50px;
-      padding: 6px 14px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--gold-primary);
+      cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      transition: transform 0.2s ease;
+      gap: 6px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      transition: transform 0.2s;
     }
-    .audio-dock:active { transform: scale(0.95); }
-    .audio-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--gold-primary); }
-    .vinyl-icon { font-size: 1.1rem; display: inline-block; }
-    .rotating { animation: spin 3s linear infinite; }
-    @keyframes spin { 100% { transform: rotate(360deg); } }
+    .control-pill:active { transform: scale(0.92); }
 
-    /* Hybrid Shell Frame */
-    .hybrid-wrapper {
+    /* Main Full-Screen Vertical Slider Container */
+    .story-container {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scrollbar-width: none; /* Firefox */
+    }
+    .story-container::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+
+    /* Individual Full-Screen Chapter Section */
+    .chapter {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 40px 24px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Background Imagery with Cinematic Zoom */
+    .chapter-bg {
+      position: absolute;
+      inset: -20px;
+      background-size: cover;
+      background-position: center;
+      filter: blur(25px) brightness(0.4);
+      transform: scale(1.1);
+      z-index: 0;
+      animation: subtleZoom 15s infinite alternate ease-in-out;
+    }
+
+    @keyframes subtleZoom {
+      0% { transform: scale(1.05); }
+      100% { transform: scale(1.18); }
+    }
+
+    .chapter-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(7,9,14,0.3) 0%, rgba(7,9,14,0.85) 70%, rgba(7,9,14,0.98) 100%);
+      z-index: 1;
+    }
+
+    /* Chapter 1 Background */
+    .ch1-bg { background-image: url('couple.jpg'); }
+    /* Chapter 2 Background */
+    .ch2-bg { background-image: url('venue.jpg'); }
+    /* Chapter 3 Background */
+    .ch3-bg { background-image: url('couple.jpg'); }
+
+    /* Chapter Content Card Layer */
+    .chapter-content {
       position: relative;
       z-index: 10;
       width: 100%;
-      max-width: 440px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 32px 20px;
+      max-width: 420px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 32px;
+      padding: 30px 20px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    @media (min-width: 768px) {
-      .hybrid-wrapper {
-        min-height: auto;
-        height: 85vh;
-        max-height: 750px;
-        border-radius: 36px;
-        border: 1px solid var(--glass-border);
-        background: rgba(12, 14, 18, 0.75);
-        backdrop-filter: blur(30px);
-        box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-        overflow-y: auto;
-      }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Header Badge */
-    .top-badge {
-      text-align: center;
-      margin-bottom: auto;
-    }
-    .badge-pill {
+    .badge {
       display: inline-block;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 600;
       letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--gold-primary);
       background: rgba(223, 177, 91, 0.1);
       border: 1px solid rgba(223, 177, 91, 0.25);
-      padding: 6px 16px;
+      padding: 5px 14px;
       border-radius: 20px;
-      backdrop-filter: blur(8px);
+      margin-bottom: 12px;
     }
 
-    /* Center Focus Section */
-    .center-content {
-      text-align: center;
-      margin: 24px 0;
-    }
-
-    .names-heading {
+    .chapter-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 8vw, 2.8rem);
+      font-size: 2.1rem;
       font-weight: 600;
       line-height: 1.2;
       background: var(--gold-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
-    .ampersand {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.5rem;
+    .chapter-subtitle {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    /* Calendar Grid Styling */
+    .calendar-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 14px;
+      margin-bottom: 20px;
+    }
+
+    .cal-header {
+      font-weight: 600;
+      font-size: 0.95rem;
       color: var(--gold-primary);
-      -webkit-text-fill-color: var(--gold-primary);
-      display: block;
-      margin: 2px 0;
-    }
-
-    .date-pill-box {
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: #fff;
+      margin-bottom: 10px;
       letter-spacing: 1px;
-      margin-top: 14px;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
-    }
-
-    .location-box {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-top: 4px;
-      letter-spacing: 0.5px;
-    }
-
-    /* Live Countdown Grid */
-    .countdown-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin: 20px 0;
-    }
-    .time-box {
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      padding: 10px 4px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-    }
-    .time-value {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #fff;
-    }
-    .time-label {
-      font-size: 0.6rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
+    }
+
+    .cal-days-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    .cal-day-name {
       color: var(--text-muted);
-      margin-top: 2px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding-bottom: 4px;
     }
 
-    /* Action Dock */
-    .action-dock {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: auto;
+    .cal-num {
+      padding: 8px 0;
+      border-radius: 8px;
+      color: #d1d5db;
     }
 
-    .primary-btn {
+    .cal-num.highlight {
       background: var(--gold-gradient);
       color: #0b0d12;
       font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.5px;
-      padding: 15px 24px;
-      border-radius: 999px;
-      text-decoration: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 10px 30px rgba(223, 177, 91, 0.3);
-      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 4px 15px rgba(223, 177, 91, 0.4);
     }
-    .primary-btn:active { transform: scale(0.96); }
 
-    .secondary-info {
-      font-size: 0.8rem;
+    /* Action Buttons Row */
+    .action-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-action {
+      flex: 1;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 10px;
+      border-radius: 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .btn-action:active { transform: scale(0.95); }
+
+    .btn-action.primary {
+      background: var(--gold-gradient);
+      color: #0b0d12;
+      border: none;
+      box-shadow: 0 8px 20px rgba(223, 177, 91, 0.3);
+    }
+
+    /* Scroll Indicator Arrow */
+    .scroll-hint {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       color: var(--text-muted);
-      text-align: center;
-      letter-spacing: 0.5px;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+      40% { transform: translate(-50%, -8px); }
+      60% { transform: translate(-50%, -4px); }
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Cinematic Background -->
-  <div class="backdrop-container">
-    <div class="backdrop-image"></div>
-    <div class="backdrop-overlay"></div>
-  </div>
-
-  <!-- Audio Toggle Dock -->
-  <div class="audio-dock" id="musicToggle">
-    <span class="audio-label" id="audioLabel">Sound</span>
-    <span class="vinyl-icon" id="vinylIcon">🎵</span>
+  <!-- Top Controls (Audio & Auto-Scroll Toggle) -->
+  <div class="top-controls">
+    <div class="control-pill" id="autoScrollToggle">
+      <span id="scrollIcon">⏸️</span> <span id="scrollText">Auto-Play</span>
+    </div>
+    <div class="control-pill" id="musicToggle">
+      <span id="musicIcon">🎵</span> <span id="musicText">Sound</span>
+    </div>
   </div>
 
   <!-- Background Audio Track -->
   <audio id="bgMusic" loop preload="auto">
-    <source src="https://assets.mixkit.co/music/preview/mixkit-serene-view-443.mp3" type="audio/mp3">
+    <source src="song.mp3" type="audio/mp3">
   </audio>
 
-  <!-- Main Responsive Hybrid Container -->
-  <div class="hybrid-wrapper">
-    
-    <!-- Top Header -->
-    <div class="top-badge">
-      <span class="badge-pill">Save The Date</span>
-    </div>
+  <!-- Full-Screen Auto-Scrolling Story Container -->
+  <div class="story-container" id="storyContainer">
 
-    <!-- Center Typography & Focus -->
-    <div class="center-content">
-      <div class="names-heading">
-        Mansi Karandikar
-        <span class="ampersand">&amp;</span>
-        Vikas Mishra
-      </div>
-      <div class="date-pill-box">January 30 &amp; 31, 2027</div>
-      <div class="location-box">📍 Nagda, Madhya Pradesh</div>
-
-      <!-- Live Dynamic Countdown -->
-      <div class="countdown-grid">
-        <div class="time-box">
-          <div class="time-value" id="days">00</div>
-          <div class="time-label">Days</div>
+    <!-- CHAPTER 1: The Intro -->
+    <section class="chapter">
+      <div class="chapter-bg ch1-bg"></div>
+      <div class="chapter-overlay"></div>
+      
+      <div class="chapter-content">
+        <div class="badge">Chapter I</div>
+        <div class="chapter-title">The Time Is Almost Here</div>
+        <div class="chapter-subtitle">
+          Two hearts, one beautiful journey ahead. Join us as we begin our forever.
         </div>
-        <div class="time-box">
-          <div class="time-value" id="hours">00</div>
-          <div class="time-label">Hours</div>
-        </div>
-        <div class="time-box">
-          <div class="time-value" id="minutes">00</div>
-          <div class="time-label">Mins</div>
-        </div>
-        <div class="time-box">
-          <div class="time-value" id="seconds">00</div>
-          <div class="time-label">Secs</div>
+        <div style="font-family:'Playfair Display',serif; font-size:1.25rem; color:var(--gold-primary);">
+          Mansi Karandikar &amp; Vikas Mishra
         </div>
       </div>
-    </div>
 
-    <!-- Action Buttons -->
-    <div class="action-dock">
-      <a 
-        class="primary-btn" 
-        href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Mansi+Karandikar+%26+Vikas+Mishra&dates=20270130/20270201&details=Save+the+Date+for+the+wedding+celebrations+of+Mansi+and+Vikas+in+Nagda!&location=Nagda,+Madhya+Pradesh" 
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span>🗓️</span> Add to Google Calendar
-      </a>
-      <div class="secondary-info">Tap to block your calendar automatically</div>
-    </div>
+      <div class="scroll-hint">
+        <span>Scroll</span>
+        <span>↓</span>
+      </div>
+    </section>
+
+    <!-- CHAPTER 2: The Venue -->
+    <section class="chapter">
+      <div class="chapter-bg ch2-bg"></div>
+      <div class="chapter-overlay"></div>
+      
+      <div class="chapter-content">
+        <div class="badge">Chapter II</div>
+        <div class="chapter-title">Geetashree Garden</div>
+        <div class="chapter-subtitle">
+          Where celebrations come alive. Set amidst scenic beauty in the heart of Nagda, Madhya Pradesh.
+        </div>
+        <a 
+          href="https://maps.google.com/?q=Geetashree+Garden+Nagda+Madhya+Pradesh" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="btn-action primary"
+          style="width: 100%; flex-direction: row; justify-content: center; gap: 8px;"
+        >
+          <span>📍</span> Open Venue in Google Maps
+        </a>
+      </div>
+
+      <div class="scroll-hint">
+        <span>Scroll</span>
+        <span>↓</span>
+      </div>
+    </section>
+
+    <!-- CHAPTER 3: Save The Date & Actions -->
+    <section class="chapter">
+      <div class="chapter-bg ch3-bg"></div>
+      <div class="chapter-overlay"></div>
+      
+      <div class="chapter-content">
+        <div class="badge">Save The Date</div>
+        <div class="chapter-title" style="font-size: 1.8rem; margin-bottom: 6px;">January 2027</div>
+        
+        <!-- Animated Calendar Widget -->
+        <div class="calendar-card">
+          <div class="cal-header">Jan 30 &amp; 31, 2027</div>
+          <div class="cal-days-grid">
+            <div class="cal-day-name">Su</div>
+            <div class="cal-day-name">Mo</div>
+            <div class="cal-day-name">Tu</div>
+            <div class="cal-day-name">We</div>
+            <div class="cal-day-name">Th</div>
+            <div class="cal-day-name">Fr</div>
+            <div class="cal-day-name">Sa</div>
+            
+            <div class="cal-num">24</div><div class="cal-num">25</div><div class="cal-num">26</div><div class="cal-num">27</div><div class="cal-num">28</div><div class="cal-num">29</div><div class="cal-num highlight">30</div>
+            <div class="cal-num highlight">31</div><div class="cal-num">1</div><div class="cal-num">2</div><div class="cal-num">3</div><div class="cal-num">4</div><div class="cal-num">5</div><div class="cal-num">6</div>
+          </div>
+        </div>
+
+        <!-- Dual Action Options -->
+        <div class="action-row">
+          <a 
+            href="https://maps.google.com/?q=Geetashree+Garden+Nagda+Madhya+Pradesh" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="btn-action"
+          >
+            <span style="font-size:1.1rem;">📍</span>
+            <span>Location</span>
+          </a>
+          <a 
+            href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Mansi+Karandikar+%26+Vikas+Mishra&dates=20270130/20270201&details=Save+the+Date+for+the+wedding+celebrations+of+Mansi+and+Vikas+at+Geetashree+Garden!&location=Geetashree+Garden,+Nagda,+Madhya+Pradesh" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-action primary"
+          >
+            <span style="font-size:1.1rem;">🗓️</span>
+            <span>Add to Calendar</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
   </div>
 
   <script>
-    // Audio Player Controller
+    const container = document.getElementById('storyContainer');
+    const autoScrollToggle = document.getElementById('autoScrollToggle');
+    const scrollIcon = document.getElementById('scrollIcon');
+    const scrollText = document.getElementById('scrollText');
+    
+    let isAutoScrolling = false;
+    let scrollInterval = null;
+
+    // Auto-scroll engine (Glides smoothly every 5 seconds to next chapter)
+    function startAutoScroll() {
+      isAutoScrolling = true;
+      scrollIcon.textContent = '▶️';
+      scrollText.textContent = 'Auto-Playing';
+      
+      scrollInterval = setInterval(() => {
+        const chapterHeight = window.innerHeight;
+        const maxScroll = container.scrollHeight - chapterHeight;
+        
+        if (container.scrollTop + chapterHeight >= maxScroll - 10) {
+          container.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          container.scrollBy({ top: chapterHeight, behavior: 'smooth' });
+        }
+      }, 5000);
+    }
+
+    function stopAutoScroll() {
+      isAutoScrolling = false;
+      scrollIcon.textContent = '⏸️';
+      scrollText.textContent = 'Manual';
+      clearInterval(scrollInterval);
+    }
+
+    autoScrollToggle.addEventListener('click', () => {
+      if (isAutoScrolling) {
+        stopAutoScroll();
+      } else {
+        startAutoScroll();
+      }
+    });
+
+    // Audio Controller
     const musicToggle = document.getElementById('musicToggle');
-    const vinylIcon = document.getElementById('vinylIcon');
-    const audioLabel = document.getElementById('audioLabel');
+    const musicIcon = document.getElementById('musicIcon');
+    const musicText = document.getElementById('musicText');
     const bgMusic = document.getElementById('bgMusic');
     let isPlaying = false;
 
     musicToggle.addEventListener('click', () => {
       if (isPlaying) {
         bgMusic.pause();
-        vinylIcon.classList.remove('rotating');
-        vinylIcon.textContent = '🔈';
-        audioLabel.textContent = 'Muted';
+        musicIcon.textContent = '🎵';
+        musicText.textContent = 'Sound';
       } else {
         bgMusic.play().then(() => {
-          vinylIcon.classList.add('rotating');
-          vinylIcon.textContent = '🎶';
-          audioLabel.textContent = 'Playing';
+          musicIcon.textContent = '🎶';
+          musicText.textContent = 'Playing';
         }).catch(() => {});
       }
       isPlaying = !isPlaying;
     });
-
-    // Live Countdown Logic (Target: Jan 30, 2027)
-    const weddingDate = new Date('January 30, 2027 00:00:00').getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
-
-      if (distance < 0) return;
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById('days').textContent = String(days).padStart(2, '0');
-      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
   </script>
 </body>
 </html>
