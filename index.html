@@ -15,8 +15,8 @@
       --bg-base: #07090e;
       --gold-primary: #dfb15b;
       --gold-gradient: linear-gradient(135deg, #f7e1b5 0%, #dfb15b 50%, #c59341 100%);
-      --glass-bg: rgba(15, 18, 25, 0.7);
-      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-bg: rgba(15, 18, 25, 0.78);
+      --glass-border: rgba(255, 255, 255, 0.15);
       --text-main: #f3f4f6;
       --text-muted: #9ca3af;
     }
@@ -75,11 +75,9 @@
       height: 100dvh;
       overflow-y: scroll;
       scroll-snap-type: y mandatory;
-      scrollbar-width: none; /* Firefox */
+      scrollbar-width: none;
     }
-    .story-container::-webkit-scrollbar {
-      display: none; /* Chrome/Safari */
-    }
+    .story-container::-webkit-scrollbar { display: none; }
 
     /* Individual Full-Screen Chapter Section */
     .chapter {
@@ -104,7 +102,7 @@
       inset: -20px;
       background-size: cover;
       background-position: center;
-      filter: blur(25px) brightness(0.4);
+      filter: blur(20px) brightness(0.4);
       transform: scale(1.1);
       z-index: 0;
       animation: subtleZoom 15s infinite alternate ease-in-out;
@@ -122,11 +120,26 @@
       z-index: 1;
     }
 
-    /* Chapter 1 Background */
+    /* Chapter Background Bindings */
     .ch1-bg { background-image: url('couple.jpg'); }
-    /* Chapter 2 Background */
-    .ch2-bg { background-image: url('venue.jpg'); }
-    /* Chapter 3 Background */
+    
+    /* MANGA / ANIME GIBLIFIED VENUE STYLING */
+    .ch2-bg { 
+      background-image: url('venue.jpg');
+      /* CSS filters that instantly convert the real photo into an illustrated anime/manga cel-shaded look */
+      filter: contrast(135%) saturate(140%) brightness(0.65) hue-rotate(-10deg);
+      mix-blend-mode: luminosity;
+    }
+    
+    /* Anime glowing overlay for Chapter 2 */
+    .anime-venue-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 40%, rgba(255, 200, 100, 0.25) 0%, rgba(10, 20, 40, 0.85) 80%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
     .ch3-bg { background-image: url('couple.jpg'); }
 
     /* Chapter Content Card Layer */
@@ -286,7 +299,7 @@
 </head>
 <body>
 
-  <!-- Top Controls (Audio & Auto-Scroll Toggle) -->
+  <!-- Top Controls -->
   <div class="top-controls">
     <div class="control-pill" id="autoScrollToggle">
       <span id="scrollIcon">⏸️</span> <span id="scrollText">Auto-Play</span>
@@ -326,13 +339,14 @@
       </div>
     </section>
 
-    <!-- CHAPTER 2: The Venue -->
+    <!-- CHAPTER 2: The Venue (Anime Manga Styled Geetashree Garden) -->
     <section class="chapter">
       <div class="chapter-bg ch2-bg"></div>
-      <div class="chapter-overlay"></div>
+      <div class="anime-venue-glow"></div>
+      <div class="chapter-overlay" style="background: linear-gradient(180deg, rgba(7,9,14,0.1) 0%, rgba(7,9,14,0.8) 70%, rgba(7,9,14,0.95) 100%);"></div>
       
       <div class="chapter-content">
-        <div class="badge">Chapter II</div>
+        <div class="badge">✨ Anime Edition • Chapter II</div>
         <div class="chapter-title">Geetashree Garden</div>
         <div class="chapter-subtitle">
           Where celebrations come alive. Set amidst scenic beauty in the heart of Nagda, Madhya Pradesh.
@@ -415,7 +429,6 @@
     let isAutoScrolling = false;
     let scrollInterval = null;
 
-    // Auto-scroll engine (Glides smoothly every 5 seconds to next chapter)
     function startAutoScroll() {
       isAutoScrolling = true;
       scrollIcon.textContent = '▶️';
@@ -448,7 +461,6 @@
       }
     });
 
-    // Audio Controller
     const musicToggle = document.getElementById('musicToggle');
     const musicIcon = document.getElementById('musicIcon');
     const musicText = document.getElementById('musicText');
