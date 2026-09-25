@@ -31,7 +31,7 @@
       align-items: center;
     }
 
-    /* Cinematic Ambient Background for Laptop View */
+    /* Ambient Backdrop for Laptops */
     .ambient-backdrop {
       position: fixed;
       inset: 0;
@@ -41,7 +41,7 @@
       z-index: 0;
     }
 
-    /* True Responsive Container (Works like a mobile app frame on laptops, full screen on phones) */
+    /* App Frame Container */
     .app-frame {
       position: relative;
       z-index: 10;
@@ -73,7 +73,7 @@
     /* Top Headline */
     .top-headline {
       position: absolute;
-      top: 2.5%;
+      top: 2%;
       left: 0;
       right: 0;
       text-align: center;
@@ -85,69 +85,158 @@
       z-index: 20;
     }
 
-    /* Top Control Bar */
+    /* Elongated & Tilted Comic Top Control Bar */
     .top-control-bar {
       position: absolute;
-      top: 9%;
+      top: 8.5%;
       left: 3%;
       right: 3%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 25;
-      gap: 6px;
+      gap: 8px;
     }
 
     .comic-badge {
-      border: 2px solid #000;
-      border-radius: 12px;
-      padding: 6px 10px;
+      border: 3px solid #000;
+      border-radius: 14px;
+      padding: 8px 12px;
       font-family: 'Bungee', cursive;
-      font-size: 0.48rem;
+      font-size: 0.52rem;
       color: #000;
       text-decoration: none;
-      box-shadow: 3px 3px 0px #000;
+      box-shadow: 4px 4px 0px #000;
       text-align: center;
       cursor: pointer;
-      display: inline-block;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       transition: transform 0.1s;
+      flex: 1;
     }
-    .comic-badge:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0px #000; }
+    .comic-badge:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000; }
 
-    .date-badge { background: #38bdf8; transform: rotate(-1.5deg); }
-    .sound-badge { background: #f472b6; transform: rotate(0deg); }
-    .venue-badge { background: #ffde00; transform: rotate(1.5deg); }
+    .date-badge { background: #38bdf8; transform: rotate(-3deg); }
+    .sound-badge { background: #f472b6; transform: rotate(1.5deg); }
+    .venue-badge { background: #ffde00; transform: rotate(-2deg); }
 
-    /* Side Comic Photo Frame Accent */
-    .comic-polaroid {
+    /* Right-Side Polaroid */
+    .comic-polaroid-right {
       position: absolute;
       top: 22%;
       right: 4%;
       background: #fff;
       border: 2px solid #000;
-      padding: 4px 4px 16px 4px;
-      width: 65px;
-      box-shadow: 3px 3px 0px #000;
+      padding: 6px 6px 18px 6px;
+      width: 70px;
+      box-shadow: 4px 4px 0px #000;
       transform: rotate(6deg);
-      z-index: 5;
-      pointer-events: none;
+      z-index: 15;
+      cursor: pointer;
+      transition: transform 0.2s;
     }
-    .comic-polaroid img {
+    .comic-polaroid-right:hover { transform: rotate(4deg) scale(1.05); }
+    .comic-polaroid-right img {
       width: 100%;
-      height: 55px;
+      height: 60px;
       object-fit: cover;
       border: 1px solid #000;
     }
-    .comic-polaroid span {
+    .comic-polaroid-right span {
       display: block;
       font-family: 'Bungee', cursive;
       font-size: 0.35rem;
       color: #000;
       text-align: center;
-      margin-top: 3px;
+      margin-top: 4px;
     }
 
-    /* Bottom Compact Banner */
+    /* Left-Side Polaroids (Below Tree) */
+    .comic-polaroid-left {
+      position: absolute;
+      top: 32%;
+      left: 4%;
+      background: #fff;
+      border: 2px solid #000;
+      padding: 6px 6px 18px 6px;
+      width: 65px;
+      box-shadow: 4px 4px 0px #000;
+      transform: rotate(-7deg);
+      z-index: 15;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .comic-polaroid-left:hover { transform: rotate(-5deg) scale(1.05); }
+    .comic-polaroid-left img {
+      width: 100%;
+      height: 55px;
+      object-fit: cover;
+      border: 1px solid #000;
+    }
+    .comic-polaroid-left span {
+      display: block;
+      font-family: 'Bungee', cursive;
+      font-size: 0.35rem;
+      color: #000;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    /* Lightbox Modal for Polaroids */
+    .lightbox-modal {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .lightbox-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .lightbox-card {
+      background: #fff;
+      border: 4px solid #000;
+      padding: 10px 10px 24px 10px;
+      max-width: 280px;
+      width: 100%;
+      box-shadow: 8px 8px 0px #000;
+      transform: rotate(-2deg);
+      text-align: center;
+    }
+    .lightbox-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border: 2px solid #000;
+    }
+    .lightbox-card p {
+      font-family: 'Bungee', cursive;
+      font-size: 0.7rem;
+      color: #000;
+      margin-top: 10px;
+    }
+    .close-hint {
+      margin-top: 20px;
+      font-family: 'Bungee', cursive;
+      font-size: 0.6rem;
+      color: #ffde00;
+      background: rgba(0,0,0,0.6);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 2px solid #ffde00;
+    }
+
+    /* Bottom Compact Banner with Dates */
     .bottom-banner {
       position: absolute;
       bottom: 3%;
@@ -172,7 +261,7 @@
 
     .banner-subtitle {
       font-family: 'Bungee', cursive;
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       color: #dc2626;
       letter-spacing: 0.5px;
       text-transform: uppercase;
@@ -196,13 +285,19 @@
     <!-- Top Headline -->
     <div class="top-headline">THE TIME IS ALMOST HERE!</div>
 
-    <!-- Side Comic Accent Frame -->
-    <div class="comic-polaroid">
-      <img src="couple.jpg" alt="Mansi & Vikas">
+    <!-- Left-Side Polaroid (Below Tree) -->
+    <div class="comic-polaroid-left" onclick="openLightbox('polaroid1.jpg', 'MEMORIES')">
+      <img src="polaroid1.jpg" alt="Memory 1" onerror="this.src='couple.jpg'">
+      <span>TAP TO VIEW</span>
+    </div>
+
+    <!-- Right-Side Polaroid -->
+    <div class="comic-polaroid-right" onclick="openLightbox('polaroid2.jpg', 'FOREVER')">
+      <img src="polaroid2.jpg" alt="Memory 2" onerror="this.src='couple.jpg'">
       <span>FOREVER</span>
     </div>
 
-    <!-- Top Control Bar -->
+    <!-- Top Elongated & Tilted Control Bar -->
     <div class="top-control-bar">
       <!-- Calendar Pill -->
       <a 
@@ -230,10 +325,19 @@
       </a>
     </div>
 
-    <!-- Bottom Compact Banner -->
+    <!-- Lightbox Modal Popup -->
+    <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+      <div class="lightbox-card" onclick="event.stopPropagation()">
+        <img id="lightboxImg" src="" alt="Giblified Photo">
+        <p id="lightboxCaption">MAMORIES</p>
+      </div>
+      <div class="close-hint">✕ TAP ANYWHERE TO CLOSE</div>
+    </div>
+
+    <!-- Bottom Compact Banner with Dates Included -->
     <div class="bottom-banner">
       <div class="banner-names">Mansi &amp; Vikas</div>
-      <div class="banner-subtitle">Save The Date • Nagda, M.P.</div>
+      <div class="banner-subtitle">JAN 30 &amp; 31, 2027 • NAGDA, M.P.</div>
     </div>
 
   </div>
@@ -242,7 +346,9 @@
     const bgMusic = document.getElementById('bgMusic');
     const soundStatus = document.getElementById('soundStatus');
     const soundTogglePill = document.getElementById('soundTogglePill');
-    const appFrame = document.getElementById('appFrame');
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
     let isPlaying = false;
 
     function toggleAudio() {
@@ -255,17 +361,33 @@
           soundStatus.textContent = 'ON';
           soundTogglePill.style.background = '#4ade80';
         }).catch((err) => {
-          console.log("Audio play blocked or error:", err);
+          console.log("Audio play blocked:", err);
         });
       }
       isPlaying = !isPlaying;
     }
 
-    // Tap anywhere inside the app frame or background to toggle sound (unless clicking a link)
+    // Tap anywhere inside app frame to toggle sound (unless clicking links or polaroids)
     document.addEventListener('click', (e) => {
-      if (e.target.closest('a')) return; // Let links open normally
+      if (e.target.closest('a') || e.target.closest('.comic-polaroid-left') || e.target.closest('.comic-polaroid-right') || lightboxModal.classList.contains('active')) return;
       toggleAudio();
     });
+
+    soundTogglePill.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleAudio();
+    });
+
+    // Lightbox functions for Polaroids
+    function openLightbox(imgSrc, captionText) {
+      lightboxImg.src = imgSrc;
+      lightboxCaption.textContent = captionText;
+      lightboxModal.classList.add('active');
+    }
+
+    function closeLightbox() {
+      lightboxModal.classList.remove('active');
+    }
   </script>
 </body>
 </html>
